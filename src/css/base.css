@@ -1,0 +1,24 @@
+  #app {
+    font-family: 'EngraversGothic', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @media (min-width: 1200px) {
+    .container {
+      width: 992px !important; /* FIXME: Disable BS 1200px breakpoint */
+    }
+  }
+
+[v-cloak] {
+  display: none;
+}
+
+.delay1second {
+    -webkit-animation-delay: 1s; 
+    animation-delay: 1s;
+}
+
+.delay2seconds {
+    -webkit-animation-delay: 2s; 
+    animation-delay: 2s;
+}

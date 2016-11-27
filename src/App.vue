@@ -1,28 +1,29 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
-  </div>
-</template>
-
 <script>
-import Hello from './components/Hello';
+  import 'animate.css';
 
-export default {
-  name: 'app',
-  components: {
-    Hello,
-  },
-};
+  import GiftHeader from './components/GiftHeader';
+  import GiftList from './components/GiftList';
+  import './assets/fonts/EngraversGothic-font.css';
+  import './css/minimal-bootstrap.css';
+  import './css/base.css';
+
+
+  export default {
+    methods: {
+      applyFilters(newFilters) {
+        this.$refs['gift-list'].filters = newFilters;
+      },
+    },
+    components: {
+      GiftHeader,
+      GiftList,
+    },
+  };
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <div id="app" v-cloak>
+   <gift-header v-on:filtersChanged="applyFilters" />
+   <gift-list ref="gift-list" />
+  </div>
+</template>
