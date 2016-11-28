@@ -18,22 +18,22 @@
           <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-9">
                     <div class="row">
-                      <div class="col-xs-6 col-sm-4 col-md-6">
+                      <div class="col-xs-6 col-sm-4 col-md-4">
                           <button @click="toggleFilter('family')"  v-bind:class="{ 'selected': isFilterActive('family') !== -1 }" class="header__btn">Family</button>
                       </div>
-                      <div class="col-xs-6 col-sm-4 col-md-6">
+                      <div class="col-xs-6 col-sm-4 col-md-4">
                           <button @click="toggleFilter('love')"  v-bind:class="{ 'selected': isFilterActive('love') !== -1 }"  class="header__btn">Love</button>
                       </div>
-                      <div class="col-xs-6 col-sm-4 col-md-6">
+                      <div class="col-xs-6 col-sm-4 col-md-4">
                         <button @click="toggleFilter('faith')"  v-bind:class="{ 'selected': isFilterActive('faith') !== -1 }"  class="header__btn">Faith</button>
                       </div>
-                      <div class="col-xs-6 col-sm-4 col-md-6">
+                      <div class="col-xs-6 col-sm-4 col-md-4">
                         <button @click="toggleFilter('hobbies')"  v-bind:class="{ 'selected': isFilterActive('hobbies') !== -1 }"  class="header__btn">Hobbies</button>
                       </div>
-                      <div class="col-xs-6 col-sm-4 col-md-6">
+                      <div class="col-xs-6 col-sm-4 col-md-4">
                         <button @click="toggleFilter('purpose')"  v-bind:class="{ 'selected': isFilterActive('purpose') !== -1 }"  class="header__btn">Purpose</button>
                       </div>
-                      <div class="col-xs-6 col-sm-4 col-md-6">
+                      <div class="col-xs-6 col-sm-4 col-md-4">
                         <button @click="toggleFilter('engraving')"  v-bind:class="{ 'selected': isFilterActive('engraving') !== -1 }"  class="header__btn">Engraving</button>
                       </div>
                   </div>
@@ -178,7 +178,8 @@ span.line {
 
 @media (min-width: 992px) { 
   .header__btn--grab{
-    height: 140px;
+    height: 90px; /* FIXME: make auto height  */
+    width: 100%;
   }
 }
 
