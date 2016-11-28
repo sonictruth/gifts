@@ -15,15 +15,35 @@
         <div class="header__filter-text">Start personalizing your gift with:</div>
         <div class="header__filters">
 
-          <button @click="toggleFilter('family')"  v-bind:class="{ 'selected': isFilterActive('family') !== -1 }" class="header__btn">Family</button>
-          <button @click="toggleFilter('love')"  v-bind:class="{ 'selected': isFilterActive('love') !== -1 }"  class="header__btn">Love</button>
-          <button @click="toggleFilter('faith')"  v-bind:class="{ 'selected': isFilterActive('faith') !== -1 }"  class="header__btn">Faith</button>
+          <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-9">
+                    <div class="row">
+                      <div class="col-xs-6 col-sm-4 col-md-6">
+                          <button @click="toggleFilter('family')"  v-bind:class="{ 'selected': isFilterActive('family') !== -1 }" class="header__btn">Family</button>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-6">
+                          <button @click="toggleFilter('love')"  v-bind:class="{ 'selected': isFilterActive('love') !== -1 }"  class="header__btn">Love</button>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-6">
+                        <button @click="toggleFilter('faith')"  v-bind:class="{ 'selected': isFilterActive('faith') !== -1 }"  class="header__btn">Faith</button>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-6">
+                        <button @click="toggleFilter('hobbies')"  v-bind:class="{ 'selected': isFilterActive('hobbies') !== -1 }"  class="header__btn">Hobbies</button>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-6">
+                        <button @click="toggleFilter('purpose')"  v-bind:class="{ 'selected': isFilterActive('purpose') !== -1 }"  class="header__btn">Purpose</button>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-6">
+                        <button @click="toggleFilter('engraving')"  v-bind:class="{ 'selected': isFilterActive('engraving') !== -1 }"  class="header__btn">Engraving</button>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                        <button @click="toggleFilter('grabngo', true)"  v-bind:class="{ 'selected': isFilterActive('grabngo') !== -1 }"  class="header__btn header__btn--grab">Grab-N-Go Gifts</button>
+                </div>
+            </div>
 
-          <button @click="toggleFilter('hobbies')"  v-bind:class="{ 'selected': isFilterActive('hobbies') !== -1 }"  class="header__btn">Hobbies</button>
-          <button @click="toggleFilter('purpose')"  v-bind:class="{ 'selected': isFilterActive('purpose') !== -1 }"  class="header__btn">Purpose</button>
-          <button @click="toggleFilter('engraving')"  v-bind:class="{ 'selected': isFilterActive('engraving') !== -1 }"  class="header__btn">Engraving</button>
 
-          <button @click="toggleFilter('grabngo', true)"  v-bind:class="{ 'selected': isFilterActive('grabngo') !== -1 }"  class="header__btn">Grab-N-Go Gifts</button>
 
         </div>
       </div>
@@ -135,7 +155,7 @@ span.line {
   padding: 10px;
   outline: none;
   margin: 5px;
-  width: 200px;
+  width: 100%;
   color: #012453;
   background-color: white;
 }
@@ -147,4 +167,21 @@ span.line {
   color: white;
   background-color: #7fa6d4;
 }
+
+
+@media (min-width: 780px) { 
+  .header__btn--grab{
+    width: 400px;
+  }
+ }
+
+
+@media (min-width: 992px) { 
+  .header__btn--grab{
+    height: 140px;
+  }
+}
+
+
+
 </style>
