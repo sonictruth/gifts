@@ -1,24 +1,36 @@
 <template>
 
     <section class="container" >
+       <div class="row">
+         <div class="col-sm-6 col-sm-offset-6 col-xs-12 col-md-4 col-md-offset-8 sort-combo">
+          <select v-model="sortKey" @change="sort">
+            <option value="title"> Sort by: Title</option>
+            <option value="price"> Sorty by: Price</option>
+          </select>
+         </div>
+       </div>
         <div class="row">
-            <template v-for="gift in gifts">
-              <div class="gift col-md-4 col-xs-6 animated fadeIn">
-                <div class="gift__thumb">
-                  <div class="gift__thumb--hover"></div>
-                  <div class="gift__thumb--hover-text text-center">
-                      <div>Customize &amp; <br>make it yours!</div>
+            <transition-group name="list" tag="div" appear>
+              <div v-for="(gift, index) in filteredResults(gifts)" class="list-item gift col-md-4 col-xs-6" v-bind:key="gift.id">
+                  <div class="gift__thumb">
+                    <div class="gift__thumb--hover"></div>
+                    <div class="gift__thumb--hover-text">
+                        <div>Customize &amp; <br>make it yours!</div>
+                    </div>
+                    <img v-bind:src="gift.image" >
                   </div>
-                  <img v-bind:src="gift.image">
-                </div>
-                <div class="gift__title text-center" >{{gift.title}}</div>
-                <div class="gift__price text-center" >${{gift.price}}</div>
+                  <div class="gift__text">
+                    <div class="gift__text__title" >{{gift.title}}</div>
+                    <div class="gift__text__price" >${{gift.price}}</div>
+                  </div>
               </div>
-            </template>
+            </transition-group>
              <div class="gift col-md-4 col-xs-6">
                  <div class="gift__thumb"><img class="gift__thumb" src="../assets/thumbs/t6.jpg"></div>
             </div>
         </div>
+
+
     </section>
 
 </template>
@@ -49,6 +61,7 @@ function generateFakeGifts() {
   for (let i = 0; i < 20; i += 1) {
     const tag = getRandomItems(tags, 3);
     const gift = {
+      id: i,
       image: getRandomItem(images),
       tags: tag,
       title: tag.join(' '),
@@ -60,8 +73,29 @@ function generateFakeGifts() {
 }
 
 export default {
+  mounted() {
+    this.sort();
+  },
+  methods: {
+    sort() {
+      this.gifts.sort((a, b) => {
+        if (a[this.sortKey] < b[this.sortKey]) return -1;
+        if (a[this.sortKey] > b[this.sortKey]) return 1;
+        return 0;
+      });
+    },
+    filteredResults() {
+      let filteredResults = this.gifts;
+      if (this.filters.length > 0) {
+        filteredResults =
+          this.gifts.filter(gift => gift.tags.some(tag => this.filters.includes(tag)));
+      }
+      return filteredResults;
+    },
+  },
   data() {
     return {
+      sortKey: 'title',
       gifts: generateFakeGifts(),
       filters: [],
     };
@@ -71,11 +105,16 @@ export default {
 
 
 <style scoped>
+  .row {
+    position: relative;
+  }
+  .container{
+    margin-bottom: 30px;
+  }
   .gift{
     margin-top: 30px;
     overflow: hidden;
   }
-
   .gift__thumb:hover .gift__thumb--hover {     opacity: 0.7; }
   .gift__thumb:hover .gift__thumb--hover-text {     opacity: 1; }
 
@@ -97,6 +136,7 @@ export default {
     z-index: 20;
   }
   .gift__thumb--hover-text{
+    text-align: center;
     transition: opacity 0.5s ease-in-out;
     opacity: 0;
     position: absolute;
@@ -121,9 +161,45 @@ export default {
   .gift__thumb img{
     width: 100%;
   }
-  .gift__title, .gift__price{
+  .gift__text{
+    text-align: center;
     font-weight: bold;
     color: gray;
     font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
+  .list-item {
+    display: inline-block;
+    transition: all 0.5s;
+  }
+  .list-enter, .list-leave-active {
+    opacity: 0;
+  }
+  .list-leave-active {
+    display: none;
+  }
+  .sort-combo{
+    margin-top: 30px;
+  }
+  .sort-combo select{
+    width: 100%;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    border-radius: 0;
+    -webkit-appearance: none;
+    outline: none;
+  }
+  @media only screen and (max-width: 500px) {
+    .gift__text{
+      height: 40px;
+      font-size: 15px;
+    }
+  }
+
+
 </style>
+

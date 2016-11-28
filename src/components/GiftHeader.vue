@@ -1,7 +1,6 @@
 <template>
   <header class="fadeInDown animated">
     <div class="container header">
-      
       <img class="header__gliter-left fadeInDown animated " src="../assets/Glitter_Top-Left.png">
       <img class="header__gliter-right fadeInDown animated " src="../assets/Glitter_Top-Right.png">
       <div class="header__title"><span class="line">Find the</span> <span class="line">perfect gift</soan> <span class="line">for your</span></div>
@@ -38,7 +37,6 @@
 export default {
   data() {
     return {
-      selectedFilterCssClass: 'header__btn--selected',
       activeFilters: [],
     };
   },
@@ -68,7 +66,6 @@ export default {
 <style >
 header{
   position: relative;
-  /* FIXME: check if  auto prefix plugin works and remove extra declarations */
   background: rgba(22,21,49,1);
   background: linear-gradient(to right, rgba(22,21,49,1) 0%, rgba(68,74,122,1) 38%, rgba(68,74,122,1) 50%, rgba(68,74,122,1) 66%, rgba(22,21,49,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#161531', endColorstr='#161531', GradientType=1 );
